@@ -1,0 +1,30 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="row mt-3">
+        <h3 class="col-6 offset-3">Login on GoZaayan</h3>
+        <div class="col-6 offset-3">
+
+        
+        <form method="post"  action="/login" >
+            <div class="mb-3">
+                <label for="username" class="form-label">username</label>
+                <input name="username" 
+                id="username"
+                type="text" class="form-control" 
+                required >
+                
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input name="password" 
+                id="password"
+                type="password" class="form-control" 
+                required >
+                
+            </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Login</button>
+        </div>
+        </form>
+    </div>
+    </div>

@@ -1,0 +1,55 @@
+<% layout("/layouts/boilerplate") %>
+
+    <div class="row">
+        <h3>Edit Listing Information</h3>
+
+        
+    <form method="POST"  action="/listings/<%= listing._id %>?_method=PUT" enctype="multipart/form-data" >
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"></label>
+            <input name="listing[title]" value="<%= listing.title %>" type="text"  class="form-control"
+             id="exampleFormControlInput1" placeholder="Enter your title" required>
+          </div>
+        
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Enter Description</label>
+            <textarea name="listing[description]"   class="form-control"
+            id="exampleFormControlTextarea1" rows="2" required ><%= listing.description %></textarea>
+          </div>
+          
+        
+        
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea2" class="form-label">Price</label>
+            <input name="listing[price]"  value="<%= listing.price %>" 
+             type="number" id="exampleFormControlTextarea2" class="form-control" required></input>
+          </div>
+          
+        <div class="row">
+
+          
+        <div class="mb-3 col-md-4">
+            <label for="exampleFormControlTextarea3" class="form-label">Enter image url</label>
+            <input name="listing[image]" class="form-control"    
+             
+            id="exampleFormControlTextarea3"  type="file" ></input>
+          </div>
+        
+        <div class="mb-3 col-md-8">
+            <label for="exampleFormControlTextarea4" class="form-label">Location
+            </label>
+            <input name="listing[location]" class="form-control" value="<%= listing.location %>"  
+             
+            id="exampleFormControlTextarea4" required></input>
+          </div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea5" class="form-label">Country</label>
+            <input name="listing[country]" value="<%= listing.country %>"   
+            id="exampleFormControlTextarea5" class="form-control" required ></input>
+          </div>
+        <button class="button">Add</button>
+
+    </form>
+</div>
+

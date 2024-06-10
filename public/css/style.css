@@ -1,0 +1,43 @@
+.navbar{
+    height: 4rem;
+}
+.fa-regular{
+    color: maroon;
+}
+.nav-link{
+    color: #222222 !important;
+}
+.listing-card{
+    border: none !important;
+   margin-bottom: 2rem !important;
+}
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    
+}
+
+.card-img-overlay{
+    opacity: 0;
+}
+.card-img-overlay:hover{
+    opacity: 0.2;
+    background-color: white;
+}
+.listings-link{
+    text-decoration: none !important;
+}
+
+/* indivisual show */
+.show-img{
+    height: 40vh;
+
+}
+
+ /* FROM MAPBOX */
+#map{ 
+    height: 500px;
+    width: 90vh;
+ }
+
