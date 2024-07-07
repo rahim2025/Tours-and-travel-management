@@ -86,6 +86,11 @@ app.use("/listings/:id/reviews",reviewsRouter);
 //User
 app.use("/",userRouter);
 
+//Trip Cost Calculator
+app.get('/calculator', (req, res) => {
+    res.render('users/costCalculator');
+  });
+
 //Error Handling//
 app.all("*",(req,res,next) =>{
     next(new ExpressError(404,"Page not Found"));

@@ -1,0 +1,73 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<head>
+    <title>Trip Cost Calculator</title>
+    <link rel="stylesheet" href="/css/cost.css">
+</head>
+
+<body>
+    <div class="container">
+        
+        <!-- Destination and Transport Method Card -->
+        <div id="transportCard">
+            <h2>Enter Your Destination</h2>
+            <form id="transportForm">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+                <label for="transportMethod">Transport Method:</label>
+                <select id="transportMethod" name="transportMethod" required>
+                    <option value="Bus">Bus</option>
+                    <option value="Train">Train</option>
+                    <option value="Airplane">Domestic Flight</option>
+                </select>
+                <button type="button" onclick="showNextCard('transportCard','peopleCard')">Next</button>
+            </form>
+            <script>
+
+            </script>
+        </div>
+
+        <!-- Number of People and Tour Duration Card -->
+        <div id="peopleCard" style="display:none;">
+            <h2>Enter Trip Details</h2>
+            <form id="peopleForm">
+                <label for="peopleCount">Number of People:</label>
+                <input type="number" id="peopleCount" name="peopleCount" min="1" required>
+                <label for="duration">Tour Duration (days):</label>
+                <input type="number" id="duration" name="duration" min="1" required>
+                <button type="button" onclick="showNextCard('peopleCard','costsCard')">Next</button>
+            </form>
+        </div>
+
+       <!-- Daily Costs Card -->
+       <div id="costsCard" style="display:none;">
+        <h2>Enter Daily Costs (Per Person)</h2>
+        <form id="costsForm">
+            <label for="accommodationCost">Accommodation Cost:</label>
+            <input type="number" id="accommodationCost" name="accommodationCost" required>
+            <label for="foodCost">Food Cost:</label>
+            <input type="number" id="foodCost" name="foodCost" required>
+            <label for="miscCost">Miscellaneous Cost:</label>
+            <input type="number" id="miscCost" name="miscCost" required>
+            <button type="button" onclick="calculateTotalCost()">Calculate</button>
+        </form>
+    </div>
+
+    <!-- Result Display -->
+    <div id="result" style="display:none;">
+        <h2>Trip Itinerary</h2>
+        <p id="destinationDisplay"></p>
+        <p id="peopleDisplay"></p>
+        <p id="durationDisplay"></p>
+        <hr>
+        <h4>Trip Costs:</h4>
+        <p id="transportDisplay"></p>
+        <p id="accommodationDisplay"></p>
+        <p id="foodDisplay"></p>
+        <p id="miscDisplay"></p>
+        <hr>
+        <p id="totalCost"></p>
+    </div>
+</div>
+<script src="/js/costCalculator.js"></script>
+</body>
+</html>
