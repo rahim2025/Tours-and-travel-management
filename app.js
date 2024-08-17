@@ -25,6 +25,10 @@ const userRouter = require("./router/userRouter.js");
 
 
 
+
+
+
+
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
 app.use(express.urlencoded({extended:true}));
@@ -90,6 +94,8 @@ app.use("/",userRouter);
 app.get('/calculator', (req, res) => {
     res.render('users/costCalculator');
   });
+
+
 
 //Error Handling//
 app.all("*",(req,res,next) =>{
