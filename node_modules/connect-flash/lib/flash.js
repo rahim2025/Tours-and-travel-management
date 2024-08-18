@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var format = require('util').format;
-var isArray = require('util').isArray;
+var isArray = Array.isArray;
 
 
 /**

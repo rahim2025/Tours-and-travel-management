@@ -8,7 +8,7 @@ const path = require ("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const ExpressError = require("./utilis/expressError.js");
-const { error } = require("console");
+const { error, clear } = require("console");
 const session = require('express-session');
 const flash = require('connect-flash');
 const passport = require("passport");
@@ -21,6 +21,11 @@ const User = require("./models/user.js");
 const listingsRouter = require("./router/listings.js");
 const reviewsRouter = require("./router/reviews.js");
 const userRouter = require("./router/userRouter.js");
+
+
+
+
+
 
 
 
@@ -91,6 +96,19 @@ app.get('/calculator', (req, res) => {
     res.render('users/costCalculator');
   });
 
+//find tourmate
+app.get('/findtourmate', (req, res) => {
+    res.render('users/findtourmate');
+});
+
+app.get('/alltourmatepost', (req,res) => {
+    res.render('users/tourmatepool');
+});
+
+//Error Handling//
+app.all("*",(req,res,next) =>{
+    next(new ExpressError(404,"Page not Found"));
+});
 //Error Handling//
 app.all("*",(req,res,next) =>{
     next(new ExpressError(404,"Page not Found"));

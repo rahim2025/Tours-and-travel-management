@@ -1,0 +1,56 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<div class="row">
+    <h3>Create a New Post</h3>
+    <form action="/findtourmate" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="Enter location" required>
+        </div>
+        <div class="form-group">
+            <label for="tourDate">Tour Date</label>
+            <input type="date" class="form-control" id="tourDate" name="tourDate" required>
+        </div>
+        <div class="form-group">
+            <label for="numberOfDays">Number of Days</label>
+            <input type="number" class="form-control" id="numberOfDays" name="numberOfDays" placeholder="Enter number of days" required>
+        </div>
+        <div class="form-group">
+            <label for="people">Number of People</label>
+            <input type="number" class="form-control" id="people" name="people" placeholder="Enter number of people" required>
+        </div>
+        <div class="form-group">
+            <label for="socialMedia">Social Media Link</label>
+            <input type="text" class="form-control" id="socialMedia" name="socialMedia" placeholder="Enter social media link" required>
+        </div>
+        <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter contact" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" required>
+        </div>
+        <div class="form-group">
+            <label for="requirements">Special Requirements</label>
+            <textarea class="form-control" id="requirements" name="requirements" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="estimatedCost">Estimated Cost</label>
+            <input type="text" class="form-control" id="estimatedCost" name="estimatedCost" placeholder="Enter estimated cost" required>
+        </div>
+        <div class="form-group">
+            <label for="about">About You</label>
+            <textarea class="form-control" id="about" name="about" rows="3" placeholder="Tell us about yourself"></textarea>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

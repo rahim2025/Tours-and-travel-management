@@ -51,6 +51,30 @@
             <input name="listing[country]"  
             id="exampleFormControlTextarea5" class="form-control" required ></input>
           </div>
+        
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea7" class="form-label">Do you want to give discount?</label>
+            <select name="listing[discount]" id="exampleFormControlTextarea7" class="form-control">
+              <option value="no" selected>No</option>
+              <option value="yes">Yes</option>
+            </select>
+          </div>
+          <div class="mb-3" id="discountInput" style="display: none;">
+            <label for="exampleFormControlTextarea8" class="form-label">Discount Amount</label>
+            <input name="listing[discountAmount]"  
+            id="exampleFormControlTextarea8" class="form-control"></input>
+          </div>
+          <script>
+            const discountSelect = document.getElementById('exampleFormControlTextarea7');
+            const discountInput = document.getElementById('discountInput');
+            discountSelect.addEventListener('change', function() {
+              if (discountSelect.value === 'yes') {
+          discountInput.style.display = 'block';
+              } else {
+          discountInput.style.display = 'none';
+              }
+            });
+          </script>
         <button class="sub-btn">Add</button>
 
     </form>

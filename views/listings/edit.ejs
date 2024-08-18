@@ -48,6 +48,29 @@
             <input name="listing[country]" value="<%= listing.country %>"   
             id="exampleFormControlTextarea5" class="form-control" required ></input>
           </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea7" class="form-label">Do you want to change discount percentage?</label>
+            <select name="listing[discount]" id="exampleFormControlTextarea7" class="form-control">
+              <option value="no" <%= !listing.discount ? 'selected' : '' %>>No</option>
+              <option value="yes" <%= listing.discount ? 'selected' : '' %>>Yes</option>
+            </select>
+          </div>
+          <div class="mb-3" id="discountInput" style="<%= listing.discount ? '' : 'display: none;' %>">
+            <label for="exampleFormControlTextarea8" class="form-label">New Discount Percentage</label>
+            <input name="listing[discountAmount]" value="<%= listing.discountAmount %>" id="exampleFormControlTextarea8" class="form-control"></input>
+          </div>
+          <script>
+            const discountSelect = document.getElementById('exampleFormControlTextarea7');
+            const discountInput = document.getElementById('discountInput');
+            discountSelect.addEventListener('change', function() {
+              if (discountSelect.value === 'yes') {
+                discountInput.style.display = 'block';
+              } else {
+                discountInput.style.display = 'none';
+              }
+            });
+          </script>
+      
         <button class="button">Add</button>
 
     </form>

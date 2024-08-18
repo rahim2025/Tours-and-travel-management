@@ -34,4 +34,7 @@ router.put("/:id",
 router.delete("/:id",isLoggedIn,isOwner,
  wrapAsync(listingsController.deleteListings));
 
+ router.get("/:id",isLoggedIn,isOwner, wrapAsync(listingsController.showListing));
+// router.get("/:id", listingsController.showListing);
 module.exports = router;
+

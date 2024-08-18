@@ -5,6 +5,7 @@ let mapToken = process.env.mapToken;
 const mbxGeocoding = require('@mapbox/mapbox-sdk/services/geocoding');
 const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 
+  
 
 // geocoding with countries
 
@@ -39,14 +40,13 @@ module.exports.addListings =async (req,res,next) =>{
     
  };
 
-module.exports.indivisualListings =async (req,res) =>{
-
-    let {id} = req.params;
-    const info = await Listing.findById(id).populate("reviews").populate("owner");
-    if(!info){
-        throw new ExpressError(500,"Chat not found");
+ module.exports.indivisualListings = async (req, res) => {
+    let { id } = req.params;
+    const listing = await Listing.findById(id).populate("reviews").populate("owner");
+    if (!listing) {
+        throw new ExpressError(500, "Listing not found");
     }
-    res.render("listings/show.ejs",{info});
+    res.render("listings/show.ejs", { listing });
 };
 
 module.exports.updateListingsForm =async (req, res) => {
@@ -78,3 +78,13 @@ module.exports.updateListings =async (req, res) => {
     req.flash("success","Deleted successfully");
     res.redirect("/listings");
   }
+//  controller action for showing a listing
+module.exports.showListing = async (req, res) => {
+    const { id } = req.params;
+    const listing = await Listing.findById(id);
+    if (!listing) {
+        req.flash('error', 'Listing not found');
+        return res.redirect('/listings');
+    }
+    res.render('listings/show', { listing });
+};

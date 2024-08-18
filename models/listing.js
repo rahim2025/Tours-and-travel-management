@@ -43,6 +43,16 @@ owner:{
     type:Schema.Types.ObjectId,
     ref : "User"
 },
+discount: {
+        type: Boolean,
+        default: false
+    },
+    discountAmount: {
+        type: Number,
+        min: 0,
+        max: 100,
+        default: 0
+    }
 });
 
 listingSchema.post("findOneAndDelete", async (listing) =>{{
