@@ -1,0 +1,67 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<head>
+    <title>Rent A Vehicle</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Rent A Vehicle</h1>
+        <form action="/rentals/options" method="POST">
+            <div class="form-group">
+                <label for="district">Destination District</label>
+                <select class="form-control" id="district" name="district" required>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Sylhet">Sylhet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="differentOrigin" name="differentOrigin">
+                <label for="differentOrigin">Traveling from a different district?</label>
+            </div>
+            <div class="form-group">
+                <label for="originDistrict">Origin District</label>
+                <select class="form-control" id="originDistrict" name="originDistrict" disabled>
+                    <option value="Barishal">Barishal</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Mymensingh">Mymensingh</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rajshahi">Rajshahi</option>
+                    <option value="Rangpur">Rangpur</option>
+                    <option value="Sylhet">Sylhet</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="places">Places to Visit</label>
+                <input type="text" class="form-control" id="places" name="places" required>
+            </div>
+            <div class="form-group">
+                <label for="passengers">Number of Passengers</label>
+                <input type="number" class="form-control" id="passengers" name="passengers" required>
+            </div>
+            <div class="form-group">
+                <label for="days">Number of Days</label>
+                <input type="number" class="form-control" id="days" name="days" required>
+            </div>
+            <div class="form-group">
+                <label for="vehicleType">Vehicle Type</label>
+                <select class="form-control" id="vehicleType" name="vehicleType" required>
+                    <option value="Sedan">Sedan - Small/Medium Size, Economic/Luxurious, Suitable for long and short journeys</option>
+                    <option value="Microbus">Microbus - Medium/Large Size, Luxurious, Suitable for long and short journeys</option>
+                    <option value="Van">Van - Small/Medium Size, Economic, Suitable for short journeys</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">OK</button>
+        </form>
+    </div>
+    <script>
+        document.getElementById('differentOrigin').addEventListener('change', function() {
+            document.getElementById('originDistrict').disabled = !this.checked;
+        });
+    </script>
+</body>

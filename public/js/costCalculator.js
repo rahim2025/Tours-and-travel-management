@@ -16,6 +16,7 @@ function calculateTotalCost() {
         'Airplane': 2500,
     }
     // Retrieve user inputs
+    const source = document.getElementById('source').value;
     const destination = document.getElementById('destination').value;
     const transportMethod = document.getElementById('transportMethod').value;
     const peopleCount = parseInt(document.getElementById('peopleCount').value, 10);
@@ -28,7 +29,8 @@ function calculateTotalCost() {
     const totalCost = ( (transportCost[transportMethod] * peopleCount * 2) + ((accommodationCost + foodCost + miscCost) * duration * peopleCount) );
 
     // Display the result
-    document.getElementById('destinationDisplay').innerText = `Destination: ${destination}`;
+    document.getElementById('sourceDisplay').innerText = `Going From: ${source}`;
+    document.getElementById('destinationDisplay').innerText = `Going To: ${destination}`;
     document.getElementById('peopleDisplay').innerText = `Travelers: ${peopleCount} person(s)`;
     document.getElementById('durationDisplay').innerText = `Trip Duration: ${duration} days`;
     document.getElementById('transportDisplay').innerText = `Total ${transportMethod} Ticket Price (Round Trip): ৳${transportCost[transportMethod] * peopleCount * 2}`;

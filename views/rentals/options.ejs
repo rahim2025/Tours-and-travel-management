@@ -1,0 +1,61 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<head>
+    <title>Vehicle Options</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Available Vehicles</h1>
+        <div class="row">
+            <% for (let vehicle of vehicles) { %>
+                <div class="vehicle-card col-12">
+                    <img src="<%= vehicle.imageUrl %>" alt="<%= vehicle.type %> image" class="vehicle-image">
+                    <div class="card-body">
+                        <h3 class="card-title"><%= vehicle.type %></h3> <br>
+                        <p class="card-text">Vehicle Brand: <%= vehicle.typeDetails %></p>
+                        <p class="card-text">Driver: <%= vehicle.driverName %> </p>
+                        <p class="card-text"><b>Driver Contact: <%= vehicle.driverPhone %></b></p>
+                        <p class="card-text">District: <%= vehicle.originDistrict %></p>
+                        <p class="card-text">Cost: ৳<%= vehicle.totalCost %></p>
+                        <p class="card-text">Address: <%= vehicle.address %></p>
+                    </div>
+                    <button class="btn btn-primary book-button">Book</button>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Confirmation Popup -->
+    <div id="confirmationPopup" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirm Booking</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Do you want to proceed to the payment portal?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="confirmBooking">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.book-button').forEach(button => {
+            button.addEventListener('click', function() {
+                // Show the confirmation popup
+                new bootstrap.Modal(document.getElementById('confirmationPopup')).show();
+            });
+        });
+    
+        document.getElementById('confirmBooking').addEventListener('click', function() {
+            // Redirect to the payment portal without vehicleId
+            window.location.href = `/rentals/payment`;
+        });
+    </script>
+
+</body>

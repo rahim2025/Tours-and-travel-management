@@ -1,0 +1,57 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<body>
+    <div id="paymentPortal" class="container mt-5">
+        <div id="paymentCard1" class="payment-card">
+            <h2>Payment Amount: ৳<%= paymentAmount %></h2>
+            <button class="btn btn-primary" id="creditCardOption">Credit Card</button>
+            <button class="btn btn-primary" id="mobileBankingOption">Mobile Banking</button>
+        </div>
+        <div id="paymentCard2" class="payment-card" style="display: none;">
+            <!-- Credit Card Info Form -->
+            <form>
+                <div class="mb-3">
+                    <label for="cardNumber" class="form-label">Card Number</label>
+                    <input type="text" class="form-control" id="cardNumber" required>
+                </div>
+                <div class="mb-3">
+                    <label for="expiryDate" class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" id="expiryDate" required>
+                </div>
+                <div class="mb-3">
+                    <label for="cvv" class="form-label">CVV</label>
+                    <input type="text" class="form-control" id="cvv" required>
+                </div>
+                <button type="button" class="btn btn-success" id="confirmPayment">Confirm Payment</button>
+            </form>
+        </div>
+        <div id="paymentCard3" class="payment-card" style="display: none;">
+            <!-- Mobile Banking Service Selection -->
+            <div class="mb-3">
+                <label for="mobileBankingService" class="form-label">Select Mobile Banking Service</label>
+                <select class="form-select" id="mobileBankingService" required>
+                    <option value="bKash">bKash</option>
+                    <option value="Nagad">Nagad</option>
+                    <option value="Rocket">Rocket</option>
+                </select>
+            </div>
+        </div>
+        <div id="paymentCard4" class="payment-card" style="display: none;">
+            <!-- Mobile Banking Phone Number Verification -->
+            <div class="mb-3">
+                <label for="phoneNumber" class="form-label">Phone Number</label>
+                <input type="text" class="form-control" id="phoneNumber" required>
+            </div>
+            <button type="button" class="btn btn-primary" id="verifyPhoneNumber">Verify Phone Number</button>
+        </div>
+        <div id="paymentCard5" class="payment-card" style="display: none;">
+            <!-- Mobile Banking PIN Entry -->
+            <div class="mb-3">
+                <label for="pin" class="form-label">PIN</label>
+                <input type="password" class="form-control" id="pin" required>
+            </div>
+            <button type="button" class="btn btn-success" id="confirmPayment">Confirm Payment</button>
+        </div>
+    </div>
+    <script src="/js/paymentPortal.js"></script>
+</body>
+</html>

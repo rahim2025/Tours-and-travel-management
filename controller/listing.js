@@ -9,8 +9,28 @@ const geocodingClient = mbxGeocoding({ accessToken: mapToken });
 // geocoding with countries
 
 module.exports.allListings =async (req,res) =>{
-    const allListings = await Listing.find({});
+    const { search, price, location, country } = req.query;
+    let query = {};
+
+    if (search) {
+        query.title = new RegExp(escapeRegex(search), 'gi');
+    }
+    if (price && !isNaN(price)) {
+        query.price = { $lte: Number(price) };
+    }
+    if (location) {
+        query.location = new RegExp(escapeRegex(location), 'gi');
+    }
+    if (country) {
+        query.country = new RegExp(escapeRegex(country), 'gi')
+    }
+
+    const allListings = await Listing.find(query);
     res.render("listings/index.ejs",{allListings});
+}
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
 }
 
 module.exports.addListingsForm =(req,res) =>{

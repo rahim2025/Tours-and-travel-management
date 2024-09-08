@@ -1,28 +1,50 @@
 <% layout("/layouts/boilerplate") %>
 <body>
     <h3>All Listings</h3>
-    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2 ">
-        <% for (let listings of allListings ) { %>
-            <a class="listings-link" href="/listings/<%= listings._id %>  ">
-
-    
-            <div class="card col listing-card" style="width: 20rem;">
-            <img src="<%= listings.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
-            <div class="card-img-overlay"> </div>
-            <div class="card-body">
-              <p class="card-text"> 
-                 <b> <%=listings.title  %> </b>  <br />
-                &#2547;<%=  listings.price.toLocaleString("en-BD")  %> total before taxes
-    
-    
-              </p>
-             </div>
+    <form id="searchForm" action="/listings" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" name="search" placeholder="Search for a listing" class="form-control">
+            <button type="button" class="btn btn-secondary" id="filterButton">Filter</button>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+        <div id="filterOptions" style="display: none;">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="filterCountryCheck">
+                <label class="form-check-label" for="filterCountryCheck">Country</label>
+                <input type="text" name="country" id="filterCountry" class="form-control mb-3">
             </div>
-            </a>
-        <% }%>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="filterLocationCheck">
+                <label class="form-check-label" for="filterLocationCheck">Location</label>
+                <input type="text" name="location" id="filterLocation" class="form-control mb-3">
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="filterPriceCheck">
+                <label class="form-check-label" for="filterPriceCheck">Price</label>
+                <input type="number" name="price" id="filterPrice" class="form-control mb-3">
+            </div>
+        </div>
+    </form>
+    <div class="row row-cols-lg-4 row-cols-md-2 row-cols-sm-2 ">
+        <% if (allListings.length === 0) { %>
+            <p>No listings found.</p>
+        <% } else { %>
+            <% for (let listings of allListings ) { %>
+                <a class="listings-link" href="/listings/<%= listings._id %>">
+                    <div class="card col listing-card" style="width: 20rem;">
+                        <img src="<%= listings.image.url %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+                        <div class="card-img-overlay"></div>
+                        <div class="card-body">
+                            <p class="card-text">
+                                <b><%= listings.title %></b> <br />
+                                &#2547;<%= listings.price.toLocaleString("en-BD") %> total before taxes
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            <% } %>
+        <% } %>
     </div>
-    
-
-    
+    <script src="/js/filter.js"></script>
 </body>
 
