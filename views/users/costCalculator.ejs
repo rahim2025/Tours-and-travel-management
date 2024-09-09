@@ -11,7 +11,9 @@
         <div id="transportCard">
             <h2>Enter Your Destination</h2>
             <form id="transportForm">
-                <label for="destination">Destination:</label>
+                <label for="source">Going From:</label>
+                <input type="text" id="source" name="source" required>
+                <label for="destination">Going To:</label>
                 <input type="text" id="destination" name="destination" required>
                 <label for="transportMethod">Transport Method:</label>
                 <select id="transportMethod" name="transportMethod" required>
@@ -55,6 +57,7 @@
     <!-- Result Display -->
     <div id="result" style="display:none;">
         <h2>Trip Itinerary</h2>
+        <p id="sourceDisplay"></p>
         <p id="destinationDisplay"></p>
         <p id="peopleDisplay"></p>
         <p id="durationDisplay"></p>

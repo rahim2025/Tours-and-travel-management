@@ -4,7 +4,7 @@ const User = require ("../models/user.js");
 const wrapAsync = require("../utilis/wrapAsync.js");
 const ExpressError = require("../utilis/expressError.js");
 const passport = require("passport");
-const {saveRedirectUrl} = require("../middleware.js");
+const { saveRedirectUrl } = require("../middleware.js");
 const userController = require("../controller/user.js");
 
 
