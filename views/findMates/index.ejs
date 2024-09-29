@@ -1,0 +1,45 @@
+<% layout("/layouts/boilerplate") %>
+<div class="d-flex justify-content-end mt-4">
+    <% if (currentUser) { %>
+    <a href="/findMates/addNew" class="btn btn-primary">Create post for mates</a>
+    <% } %>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center mt-5">
+        <div class="col-md-8">
+            <% posts.forEach(function(post) { %>
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h5 class="card-title"><%= post.title %></h5>
+                    </div>
+                    <div class="card-body">
+                        <p><strong>Starting Point:</strong> <%= post.startingPoint %></p>
+                        <p><strong>Destination:</strong> <%= post.destination %></p>
+                        <p><strong>Starting Date:</strong> <%= new Date(post.startingDate).toLocaleDateString() %></p>
+                        <p><strong>Ending Date:</strong> <%= new Date(post.endingDate).toLocaleDateString() %></p>
+                        <p><strong>Description:</strong> <%= post.description %></p>
+                        <p><strong>Budget (per person):</strong> $<%= post.budget %></p>
+
+                        <p><strong>Host:</strong> <%= post.host.username %> 
+                            (Email: <%= post.host.email %>)</p>
+
+                    </div>
+                    <div class="card-footer text-muted">
+                        Posted on <%= new Date(post.createdAt).toLocaleDateString() %>
+                    </div>
+                </div>
+            <div class="d-flex align-items-center">
+                <% if (currentUser && currentUser._id.equals(post.host._id) ) { %>  
+            
+                    <form method="POST"  action="/findMates/<%= post._id %>?_method=DELETE" >
+                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                </form>
+                <% } %>
+            </div> 
+        
+                 <br>
+            <% }) %>
+        </div>
+    </div>
+</div>

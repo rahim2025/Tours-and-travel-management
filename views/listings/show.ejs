@@ -24,13 +24,13 @@
     
 
 
-    <% if (currentUser && currentUser._id.equals(info.owner._id) ) { %> 
+    <% if (currentUser && currentUser._id.equals(info.owner._id) ) { %>  
       <a type="button" class="btn btn-secondary" href="/listings/<%= info._id %>/edit">Edit this Listing</a>
       <br /><br />
       <form method="POST"  action="/listings/<%= info._id %>?_method=DELETE" >
         <button type="submit" class="btn btn-danger">Delete this listing</button>
       </form>
-      <% } %> 
+    <% } %> 
    
 
  <br>

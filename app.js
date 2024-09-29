@@ -21,7 +21,8 @@ const User = require("./models/user.js");
 const listingsRouter = require("./router/listings.js");
 const reviewsRouter = require("./router/reviews.js");
 const userRouter = require("./router/userRouter.js");
-const rentalRouter = require("./router/rentalRouter.js"); //new
+const rentalRouter = require("./router/rentalRouter.js"); 
+const findMatesRouter = require("./router/findMates.js");
 
 
 
@@ -48,13 +49,12 @@ app.listen(port,()=>{
 });
 
 const sessionOptions = {
-    secret:"superSecret",
-    resave: false,
-    saveUninitialized:true,
-    cookie:{
-        expire:Date.now()+1000*60*60*24*3,
-        maxAge:1000*60*60*24*3,
-        httpOnly:true
+    secret: "superSecret",
+    resave: true,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 3, // 3 days
+        httpOnly: true
     },
 }
 app.use(session(sessionOptions));
@@ -89,10 +89,16 @@ app.use("/",userRouter);
 //Rental
 app.use("/rentals", rentalRouter);
 
+//Find Tour Mates
+app.use("/findMates",findMatesRouter);
+
 //Trip Cost Calculator
 app.get('/calculator', (req, res) => {
     res.render('users/costCalculator');
   });
+
+
+
 
 //Error Handling//
 app.all("*",(req,res,next) =>{

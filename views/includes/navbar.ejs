@@ -11,6 +11,7 @@
           <a class="nav-link" href="/listings/new">Add New Listing</a>
           <a class="nav-link" href="/calculator">Trip Cost Calculator</a>
           <a class="nav-link" href="/rentals/rent">Rent-A-Car</a>
+          <a class="nav-link" href="/findMates">Find Travel Mates</a>
         </div>
         <div class="navbar-nav ms-auto">
           <% if (!currentUser) { %>
@@ -18,6 +19,7 @@
             <a class="nav-link" href="/login">Login</a>
          <% } %>
          <% if (currentUser) { %>
+            <a class="nav-link">Owner:<%= currentUser.username %> </a> 
             <a class="nav-link" href="/logout">Logout</a>
           <% } %>
           
