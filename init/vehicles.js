@@ -10,6 +10,7 @@ const vehicles = [
         address: "Rangpani, Sylhet",
         intraCost: 150,
         interDistrict: false,
+        percentage: 0.2,
         interCost: 0,
         maxPassengers: 8,
         imageUrl: "https://japanesenostalgiccar.com/wordpress/wp-content/uploads/2021/10/DaihatsuHiJetS65-AtraiLTypeHighRoof-1981-04.jpg"
@@ -25,6 +26,7 @@ const vehicles = [
         address: "Arambag, Dhaka",
         intraCost: 200,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 2500,
         maxPassengers: 10,
         imageUrl: "https://www.aboudcar.com/wp-content/uploads/2023/11/Photo-192-1-1024x576.jpg"
@@ -40,6 +42,7 @@ const vehicles = [
         address: "Karnaphuli, Chittagong",
         intraCost: 200,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 3000,
         maxPassengers: 12,
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/6/62/Toyota_Hiace_H200_511.JPG"
@@ -55,6 +58,7 @@ const vehicles = [
         address: "Boalia, Rajshahi",
         intraCost: 250,
         interDistrict: false,
+        percentage: 0.2,
         interCost: 0,
         maxPassengers: 5,
         imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/11/1995_Nissan_Sunny_%28B14%29_EX_Saloon_%28front%29.jpg"
@@ -70,6 +74,7 @@ const vehicles = [
         address: "Khalishpur, Khulna",
         intraCost: 230,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 300,
         maxPassengers: 6,
         imageUrl: "https://en.wikipedia.org/wiki/File:Corollavan.jpg"
@@ -85,6 +90,7 @@ const vehicles = [
         address: "Pirganj, Rangpur",
         intraCost: 200,
         interDistrict: false,
+        percentage: 0.2,
         interCost: 0,
         maxPassengers: 10,
         imageUrl: ""
@@ -100,6 +106,7 @@ const vehicles = [
         address: "Kadamtali, Sylhet",
         intraCost: 200,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 350,
         maxPassengers: 12,
         imageUrl: ""
@@ -115,6 +122,7 @@ const vehicles = [
         address: "Bakerganj, Barishal",
         intraCost: 200,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 350,
         maxPassengers: 12,
         imageUrl: ""
@@ -130,6 +138,7 @@ const vehicles = [
         address: "Mymensingh Sadar, Mymensingh",
         intraCost: 250,
         interDistrict: true,
+        percentage: 0.2,
         interCost: 400,
         maxPassengers: 6,
         imageUrl: ""

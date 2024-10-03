@@ -35,19 +35,11 @@ module.exports.vehicleOptions = (req, res) => {
             }
             return { ...vehicle, totalCost };
         });
-
+        req.session.totalCost = filteredVehicles.reduce((acc, vehicle) => acc + vehicle.totalCost, 0);
+        req.session.percentage = filteredVehicles.reduce((acc, vehicle) => acc + vehicle.percentage, 0) / filteredVehicles.length;
         res.render("rentals/options.ejs", { vehicles: filteredVehicles });
     } catch (err) {
         throw new ExpressError(500, "Error Occurred");
     }
 };
 
-module.exports.paymentPortal = (req, res) => {
-    const paymentAmount = 1000; // Calculate the payment amount
-    res.render("includes/paymentPortal.ejs", { paymentAmount });
-};
-
-module.exports.confirmPayment = (req, res) => {
-    // Handle payment confirmation logic
-    res.redirect("/");
-};

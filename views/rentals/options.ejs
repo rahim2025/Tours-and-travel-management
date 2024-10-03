@@ -17,6 +17,7 @@
                         <p class="card-text"><b>Driver Contact: <%= vehicle.driverPhone %></b></p>
                         <p class="card-text">District: <%= vehicle.originDistrict %></p>
                         <p class="card-text">Cost: ৳<%= vehicle.totalCost %></p>
+                        <p class="card-text">Advance Amount: <%= vehicle.percentage * 100 %>%</p>
                         <p class="card-text">Address: <%= vehicle.address %></p>
                     </div>
                     <button class="btn btn-primary book-button">Book</button>
@@ -34,11 +35,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Do you want to proceed to the payment portal?</p>
+                    <p>Do you want to proceed to the payment portal? Only the advance amount will be charged.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="confirmBooking">Proceed</button>
+                    <form action="/payment" method="GET">
+                        <button type="submit" class="btn btn-primary">Proceed</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -52,10 +55,6 @@
             });
         });
     
-        document.getElementById('confirmBooking').addEventListener('click', function() {
-            // Redirect to the payment portal without vehicleId
-            window.location.href = `/rentals/payment`;
-        });
     </script>
 
 </body>

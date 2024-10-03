@@ -22,6 +22,7 @@ const listingsRouter = require("./router/listings.js");
 const reviewsRouter = require("./router/reviews.js");
 const userRouter = require("./router/userRouter.js");
 const rentalRouter = require("./router/rentalRouter.js"); //new
+const paymentRouter = require("./router/paymentRouter.js");
 
 
 
@@ -88,6 +89,7 @@ app.use("/",userRouter);
 
 //Rental
 app.use("/rentals", rentalRouter);
+app.use("/payment", paymentRouter);
 
 //Trip Cost Calculator
 app.get('/calculator', (req, res) => {

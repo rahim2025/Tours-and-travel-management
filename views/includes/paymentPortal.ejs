@@ -1,57 +1,106 @@
-<% layout("/layouts/boilerplate.ejs") %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Portal</title>
+    <link rel="stylesheet" href="/css/style.css">  
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+</head>
 <body>
-    <div id="paymentPortal" class="container mt-5">
-        <div id="paymentCard1" class="payment-card">
-            <h2>Payment Amount: ৳<%= paymentAmount %></h2>
-            <button class="btn btn-primary" id="creditCardOption">Credit Card</button>
-            <button class="btn btn-primary" id="mobileBankingOption">Mobile Banking</button>
+    <div class="payment-container">
+        <h2 class="payment-title">Payment Portal</h2>
+        <p class="payment-amount">Amount to be paid: ৳<%= globalPaymentAmount %></p>
+        
+        <div id="paymentOptions" class="payment-options">
+            <button id="creditCardButton" class="btn btn-primary payment-button">Pay with Credit Card</button>
+            <button id="mobileBankingButton" class="btn btn-secondary payment-button">Pay with Mobile Banking</button>
         </div>
-        <div id="paymentCard2" class="payment-card" style="display: none;">
-            <!-- Credit Card Info Form -->
-            <form>
+        
+        <div id="paymentCard1" class="payment-card">
+            <h2 class="payment-form-title">Credit Card Payment</h2>
+            <form id="creditCardForm" action="/payment/processPayment-credit" method="POST">
+                <div class="mb-3">
+                    <label for="cardType" class="form-label">Card Type</label>
+                    <select class="form-control" id="cardType" name="cardType" required>
+                        <option value="visa">Visa</option>
+                        <option value="mastercard">Mastercard</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="cardHolderName" class="form-label">Card Holder Name</label>
+                    <input type="text" class="form-control" id="cardHolderName" name="cardHolderName" required>
+                </div>
                 <div class="mb-3">
                     <label for="cardNumber" class="form-label">Card Number</label>
-                    <input type="text" class="form-control" id="cardNumber" required>
+                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
                 </div>
                 <div class="mb-3">
                     <label for="expiryDate" class="form-label">Expiry Date</label>
-                    <input type="text" class="form-control" id="expiryDate" required>
+                    <input type="text" class="form-control" id="expiryDate" name="expiryDate" required>
                 </div>
                 <div class="mb-3">
                     <label for="cvv" class="form-label">CVV</label>
-                    <input type="text" class="form-control" id="cvv" required>
+                    <input type="text" class="form-control" id="cvv" name="cvv" required>
                 </div>
-                <button type="button" class="btn btn-success" id="confirmPayment">Confirm Payment</button>
+                <div class="mb-3">
+                    <label for="pin" class="form-label">PIN</label>
+                    <input type="password" class="form-control" id="pin" name="pin" required>
+                </div>
+                <button type="submit" class="btn btn-success payment-submit-button">Confirm Payment</button>
             </form>
         </div>
-        <div id="paymentCard3" class="payment-card" style="display: none;">
-            <!-- Mobile Banking Service Selection -->
-            <div class="mb-3">
-                <label for="mobileBankingService" class="form-label">Select Mobile Banking Service</label>
-                <select class="form-select" id="mobileBankingService" required>
-                    <option value="bKash">bKash</option>
-                    <option value="Nagad">Nagad</option>
-                    <option value="Rocket">Rocket</option>
-                </select>
-            </div>
-        </div>
-        <div id="paymentCard4" class="payment-card" style="display: none;">
-            <!-- Mobile Banking Phone Number Verification -->
-            <div class="mb-3">
-                <label for="phoneNumber" class="form-label">Phone Number</label>
-                <input type="text" class="form-control" id="phoneNumber" required>
-            </div>
-            <button type="button" class="btn btn-primary" id="verifyPhoneNumber">Verify Phone Number</button>
-        </div>
-        <div id="paymentCard5" class="payment-card" style="display: none;">
-            <!-- Mobile Banking PIN Entry -->
-            <div class="mb-3">
-                <label for="pin" class="form-label">PIN</label>
-                <input type="password" class="form-control" id="pin" required>
-            </div>
-            <button type="button" class="btn btn-success" id="confirmPayment">Confirm Payment</button>
+
+        <div id="paymentCard2" class="payment-card">
+            <h2 class="payment-form-title">Mobile Banking Payment</h2>
+            <form id="mobileBankingForm" action="/payment/processPayment-mobile" method="POST">
+                <div class="mb-3">
+                    <label for="mobileBankingService" class="form-label">Select Service</label>
+                    <select class="form-control" id="mobileBankingService" name="mobileBankingService" required>
+                        <option value="bKash">bKash</option>
+                        <option value="nagad">Nagad</option>
+                        <option value="rocket">Rocket</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="phoneNumber" class="form-label">Phone Number</label>
+                    <input type="text" class="form-control" id="phoneNumber" name="phoneNumber" required>
+                </div>
+                <div class="mb-3">
+                    <label for="mobilePin" class="form-label">PIN</label>
+                    <input type="password" class="form-control" id="mobilePin" name="mobilePin" required>
+                </div>
+                <button type="submit" class="btn btn-success payment-submit-button">Confirm Payment</button>
+            </form>
         </div>
     </div>
-    <script src="/js/paymentPortal.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentOptions = document.getElementById('paymentOptions');
+            const paymentForms = {
+                creditCard: document.getElementById('paymentCard1'),
+                mobileBanking: document.getElementById('paymentCard2')
+            };
+
+            document.getElementById('creditCardButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                showPaymentForm('creditCard');
+            });
+
+            document.getElementById('mobileBankingButton').addEventListener('click', function(event) {
+                event.preventDefault();
+                showPaymentForm('mobileBanking');
+            });
+
+            function showPaymentForm(option) {
+                paymentOptions.style.display = 'none';
+                Object.keys(paymentForms).forEach(key => {
+                    paymentForms[key].style.display = key === option ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
 </body>
 </html>
